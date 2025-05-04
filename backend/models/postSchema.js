@@ -5,14 +5,15 @@ const postSchema = mongoose.Schema({
         type: String
     },
     body: {
-
+        type: String
     },
     author: {
-
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     },
     likes: {
         type: [mongoose.Schema.Types.ObjectId],
-        ref: "User"
+        ref: "Reaction"
     },
     replies: {
         type: [mongoose.Schema.Types.ObjectId],
@@ -28,7 +29,7 @@ const postSchema = mongoose.Schema({
     video: {
         type: String,
     }
-    
+
 })
 
 const model = mongoose.model("Post", postSchema)
