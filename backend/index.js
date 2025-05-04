@@ -11,7 +11,11 @@ app.use(express.json());
 
 //  import Router
 const usersRouter = require("../backend/routes/users")
+const reoleRouter = require("../backend/routes/roles")
+
+
 app.use("/users", usersRouter)
+app.use("/roles", reoleRouter)
 
 // Handles any other endpoints [unassigned - endpoints]
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));

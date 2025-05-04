@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt")
 
 const userSchema = mongoose.Schema({
     userName: {
@@ -58,6 +59,11 @@ const userSchema = mongoose.Schema({
     banner: {
         type: String
     },
+})
+
+userSchema.pre("save", async function () {
+    this.email = this.email.toLowerCase();
+    this.password = await bcrypt.hash(this.password, 10)
 })
 
 const model = mongoose.model("User", userSchema);
