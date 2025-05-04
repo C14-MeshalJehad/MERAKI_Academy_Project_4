@@ -6,6 +6,9 @@ const userSchema = mongoose.Schema({
         required: true,
         unique: true
     },
+    age: {
+        type: Number
+    },
     displayName: {
         type: String,
         required: true
@@ -31,8 +34,34 @@ const userSchema = mongoose.Schema({
     role: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Role"
-    }
+    },
+    bio: {
+        type: String
+    },
+    followers: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "Follower"
+    },
+    following: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "Follower"
+    },
+    dateOfBirth: {
+        type: String
+    },
+    joinDate: {
+        type: Number
+    },
+    avatar: {
+        type: String
+    },
+    banner: {
+        type: String
+    },
 })
 
 const model = mongoose.model("User", userSchema);
-module.exports = model
+module.exports = model;
+
+// follower write
+
