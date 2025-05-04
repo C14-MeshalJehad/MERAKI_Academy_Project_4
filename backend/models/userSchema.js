@@ -28,7 +28,10 @@ const userSchema = mongoose.Schema({
         required: true,
         unique: true
     },
-    role: {}
+    role: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Role"
+    }
 })
 
 const model = mongoose.model("User", userSchema);
