@@ -5,7 +5,7 @@ const commentSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    author: {
+    userName: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     },
@@ -16,11 +16,12 @@ const commentSchema = mongoose.Schema({
     },
     likes: {
         type: [mongoose.Schema.Types.ObjectId],
-        ref: "User"
+        ref: "User",
+        
     },
     replies: {
         type: [mongoose.Schema.Types.ObjectId],
-        ref: "Comment"
+        ref: "Comment",
     },
     created: {
         type: Date,
@@ -31,4 +32,3 @@ const commentSchema = mongoose.Schema({
 const model = mongoose.model("Comment", commentSchema);
 module.exports = model
 
-// likes and replies should be in array!

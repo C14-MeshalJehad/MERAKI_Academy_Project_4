@@ -26,7 +26,7 @@ const Register = (req, res) => {
         country,
         phoneNumber,
         role: ROLE,
-        joinDate: Date.now()
+        joinDate: new Date()
     })
     newUser
         .save()

@@ -51,7 +51,7 @@ const userSchema = mongoose.Schema({
         type: String
     },
     joinDate: {
-        type: Number
+        type: String
     },
     avatar: {
         type: String

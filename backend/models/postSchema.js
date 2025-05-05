@@ -7,13 +7,17 @@ const postSchema = mongoose.Schema({
     body: {
         type: String
     },
-    author: {
+    displayName: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
     likes: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: "Reaction"
+    },
+    comments: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "Comment"
     },
     replies: {
         type: [mongoose.Schema.Types.ObjectId],
@@ -22,6 +26,7 @@ const postSchema = mongoose.Schema({
     created: {
         type: Date,
         default: Date.now
+
     },
     image: {
         type: String,
@@ -35,4 +40,3 @@ const postSchema = mongoose.Schema({
 const model = mongoose.model("Post", postSchema)
 module.exports = model;
 
-// likes and replies should be in array!

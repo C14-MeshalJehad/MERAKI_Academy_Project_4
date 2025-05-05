@@ -3,6 +3,8 @@ const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET_KEY
 
 const authentication = (req, res, next) => {
+    console.log("11");
+    
     try {
         if (!req.headers.authorization) {
             return res.status(403).json({
@@ -18,7 +20,7 @@ const authentication = (req, res, next) => {
                     massage: "This token is invalid or expired",
                 });
             } else {
-                req.token = token;
+                console.log(result);
                 req.token = result;
                 next();
             }
