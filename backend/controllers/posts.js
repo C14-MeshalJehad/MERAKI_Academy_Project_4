@@ -2,6 +2,7 @@ const postModel = require("../models/postSchema")
 const userModel = require("../models/userSchema")
 const postRouter = require("../routes/posts")
 
+
 const createPost = (req, res) => {
     const displayName = req.token.userId
     const {
@@ -41,21 +42,11 @@ const getAllPost = async (req, res) => {
             .find({})
             .populate("displayName")
             .populate("comments")
-            .populate("likes")
-            .populate("replies")
-        const likeCount = allPost.likes.length
-        const commentCount = allPost.comments.length
-        const repliesCount = allPost.replies.length
-        if (getAllPost) {
+        if (allPost) {
             res.status(200).json({
                 success: true,
                 message: "Here is all the posts",
-                result: {
-                    allPost,
-                    likeCount,
-                    commentCount,
-                    repliesCount
-                }
+                result: allPost
             })
         } else {
             res.status(404).json({
@@ -73,4 +64,68 @@ const getAllPost = async (req, res) => {
     }
 }
 
-module.exports = { createPost }
+const getPostByUser = (req, res) => {
+    const user = req.params.userName
+    userModel
+        .find({
+            userName: user
+        })
+        .then((result) => {
+            if (result.length) {
+                res.status(200).json({
+                    success: true,
+                    message: `Here are all the posts for: ${user}`,
+                    posts: result
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: `${user} has no posts`
+                })
+            }
+        })
+        .catch((error) => {
+            res.status(500).json({
+                success: false,
+                message: "Server Error",
+                error: error.message
+            })
+        })
+}
+
+const updatePostById = (req, res) => {
+    const {
+        title,
+        body,
+        image,
+        video
+    } = req.body
+    const updatePost = req.params.PostId
+    postModel
+        .findByIdAndUpdate(
+            updatePost, { title, body, image, video }, { new: true })
+        .then((result) => {
+            res.status(200).json({
+                success: true,
+                message: "Post has been updated",
+                newPost: result
+            })
+        })
+        .catch((error) => {
+            res.status(500).json({
+                success: false,
+                message: "Server Error",
+                error: error.message
+            })
+        })
+}
+
+module.exports = {
+    createPost,
+    getAllPost,
+    getPostByUser,
+    updatePostById
+}
+
+// up by post id  update
+// del by post id deletePostById

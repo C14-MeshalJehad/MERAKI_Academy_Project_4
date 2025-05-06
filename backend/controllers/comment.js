@@ -25,7 +25,6 @@ const createComment = (req, res) => {
                     })
                 })
                 .catch((error) => {
-                    console.log(error);
                     res.status(500).json({
                         success: false,
                         message: "Error, there is something wrong",
@@ -44,4 +43,6 @@ const createComment = (req, res) => {
         })
 }
 
+
+// get comm by post id
 module.exports = { createComment }

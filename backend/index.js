@@ -16,10 +16,10 @@ const postRouter = require("../backend/routes/posts")
 const commentRouter = require("./routes/comments")
 
 
-app.use("/users", usersRouter)
-app.use("/roles", reoleRouter)
+app.use("/Users", usersRouter)
+app.use("/Roles", reoleRouter)
 app.use("/Post", postRouter)
-app.use("/comment", commentRouter)
+app.use("/Comment", commentRouter)
 
 // Handles any other endpoints [unassigned - endpoints]
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));

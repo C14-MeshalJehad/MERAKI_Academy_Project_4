@@ -12,21 +12,15 @@ const postSchema = mongoose.Schema({
         ref: "User"
     },
     likes: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: "Reaction"
+        type: String,
     },
     comments: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: "Comment"
-    },
-    replies: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: "Comment"
     },
     created: {
         type: Date,
         default: Date.now
-
     },
     image: {
         type: String,
