@@ -23,7 +23,7 @@ const createPost = (req, res) => {
         .then((result) => {
             res.status(201).json({
                 success: true,
-                message: "Post Created Successfully",
+                message: "Post created successfully",
                 post: result
             })
         })
@@ -120,11 +120,32 @@ const updatePostById = (req, res) => {
         })
 }
 
+const deletePostById = (req, res) => {
+    const deletePost = req.params.PostId
+    postModel
+        .findByIdAndDelete(deletePost)
+        .then((result) => {
+            res.status(200).json({
+                success: true,
+                message: "Post has been deleted successfully",
+                deletedPost: result
+            })
+        })
+        .catch((error) => {
+            res.status(500).json({
+                success: false,
+                message: "Server Error",
+                error: error.message
+            })
+        })
+}
+
 module.exports = {
     createPost,
     getAllPost,
     getPostByUser,
-    updatePostById
+    updatePostById,
+    deletePostById
 }
 
 // up by post id  update
