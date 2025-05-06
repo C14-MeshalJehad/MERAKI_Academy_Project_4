@@ -147,6 +147,3 @@ module.exports = {
     updatePostById,
     deletePostById
 }
-
-// up by post id  update
-// del by post id deletePostById

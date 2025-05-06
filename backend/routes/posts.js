@@ -12,5 +12,4 @@ postsRouter.get("/", authentication, getAllPost)
 postsRouter.get("/user/:userName", getPostByUser)
 postsRouter.put("/:PostId", updatePostById)
 postsRouter.delete("/:PostId", deletePostById)
-//
 module.exports = postsRouter
