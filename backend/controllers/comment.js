@@ -17,7 +17,8 @@ const createComment = (req, res) => {
                 .findByIdAndUpdate(
                     postId, { $push: { comments: result._id } }, { new: true }
                 )
-                .then((result) => {
+                .populate("displayName")
+                .then((newCommentResult) => {
                     res.status(200).json({
                         success: true,
                         message: "Comment has been created successfully ",
@@ -44,5 +45,4 @@ const createComment = (req, res) => {
 }
 
 
-// get comm by post id
 module.exports = { createComment }

@@ -1,6 +1,6 @@
 const authorization = (endpointPermission) => {
     return (req, res, next) => {
-        const userPermission = req.token.permissions;
+        const userPermission = req.token.role.permissions;
         if (userPermission.includes(endpointPermission)) {
             next();
         } else {

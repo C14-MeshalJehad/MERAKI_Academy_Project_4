@@ -14,12 +14,14 @@ const usersRouter = require("../backend/routes/users")
 const reoleRouter = require("../backend/routes/roles")
 const postRouter = require("../backend/routes/posts")
 const commentRouter = require("./routes/comments")
+const likeRouter = require("./routes/likes")
 
 
 app.use("/Users", usersRouter)
 app.use("/Roles", reoleRouter)
 app.use("/Post", postRouter)
 app.use("/Comment", commentRouter)
+app.use("/Like", likeRouter)
 
 // Handles any other endpoints [unassigned - endpoints]
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));

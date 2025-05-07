@@ -1,5 +1,6 @@
 const express = require("express")
 const authentication = require("../middleware/authentication")
+const authorization = require("../middleware/authorization")
 const { createPost,
     getAllPost,
     getPostByUser,
@@ -7,9 +8,9 @@ const { createPost,
     deletePostById
 } = require("../controllers/posts")
 const postsRouter = express.Router()
-postsRouter.post("/", authentication, createPost)
-postsRouter.get("/", authentication, getAllPost)
-postsRouter.get("/user/:userName", getPostByUser)
-postsRouter.put("/:PostId", updatePostById)
-postsRouter.delete("/:PostId", deletePostById)
+postsRouter.post("/", authentication, authorization("Create_Post"), createPost)
+postsRouter.get("/", authentication, authorization("Manage_Post"), getAllPost)
+postsRouter.get("/user/:userName", authentication, authorization("Manage_Post"), getPostByUser)
+postsRouter.put("/:PostId", authentication, authorization("Edit_His_Post"), updatePostById)
+postsRouter.delete("/:PostId", authentication, authorization("Delete_his_post"), deletePostById)
 module.exports = postsRouter

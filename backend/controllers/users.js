@@ -52,6 +52,7 @@ const Login = (req, res) => {
         .findOne({
             email,
         })
+        .populate("role")
         .then(async (result) => {
             if (!result) {
                 return res.status(401).json({
