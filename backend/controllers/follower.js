@@ -3,7 +3,8 @@ const userModel = require("../models/userSchema")
 
 const makeFollow = (req, res) => {
     const followeId = req.token.userId
-    const userToFollow = req.params.id
+    const userToFollow = req.params.userId
+    
     if (followeId === userToFollow) {
         return res.status(403).json({
             success: true,
@@ -19,7 +20,7 @@ const makeFollow = (req, res) => {
         .then((result) => {
             userModel
                 .findByIdAndUpdate(
-                    user, { $push: { followers: result._id } }, { new: true }
+                    userToFollow, { $push: { followers: followeId } }, { new: true }
                 )
                 .then((newFollow) => {
                     res.status(200).json({
@@ -37,6 +38,8 @@ const makeFollow = (req, res) => {
                 })
         })
         .catch((error) => {
+            console.log(error);
+            
             res.status(500).json({
                 success: false,
                 message: "Server Error",
@@ -49,7 +52,7 @@ const makeFollow = (req, res) => {
 const unFollow = (req, res) => {
     const followeId = req.token.userId
     console.log("Follower ID:", followeId)
-    const userToUnFollow = req.params.id
+    const userToUnFollow = req.params.userId
     console.log(userToUnFollow);
     if (followeId === userToUnFollow) {
         return res.status(403).json({
@@ -73,7 +76,6 @@ const unFollow = (req, res) => {
                 .findByIdAndUpdate(
                     followeId, { $pull: { following: userToUnFollow } }, { new: true }
                 )
-
                 .then((unFollowed) => {
                     userModel
                         .findByIdAndUpdate(
