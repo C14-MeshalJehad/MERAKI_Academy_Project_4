@@ -10,13 +10,16 @@ const createPost = (req, res) => {
         body,
         image,
         video,
+        category,
     } = req.body
+
     const newPost = new postModel({
         title,
         body,
         displayName,
         image,
         video,
+        category,
     })
     newPost
         .save()
@@ -140,10 +143,33 @@ const deletePostById = (req, res) => {
         })
 }
 
+const getPostByCategoryId = (req, res) => {
+    const categoryId = req.params.categoryId
+    postModel.find({
+        category: categoryId
+    })
+        .populate("category")
+        .then((result) => {
+            res.status(200).json({
+                success: true,
+                message: "Posts found successfully",
+                res: result
+            })
+        })
+        .catch((error) => {
+            res.status(500).json({
+                success: false,
+                message: "Error, no posts in this category",
+                error: error.message
+            })
+        })
+}
+
 module.exports = {
     createPost,
     getAllPost,
     getPostByUser,
     updatePostById,
-    deletePostById
+    deletePostById,
+    getPostByCategoryId
 }

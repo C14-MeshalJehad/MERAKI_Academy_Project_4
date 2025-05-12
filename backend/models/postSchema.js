@@ -27,6 +27,10 @@ const postSchema = mongoose.Schema({
     },
     video: {
         type: String,
+    },
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category"
     }
 
 })
