@@ -1,0 +1,47 @@
+.category-page {
+    display: flex;
+}
+
+.side-menu {
+    width: 250px;
+    padding: 1rem;
+    border-right: 1px solid #ccc;
+    background-color: #f8f8f8;
+}
+
+.category-list {
+    flex: 1;
+    padding: 1rem;
+}
+
+.categories-items {
+    cursor: pointer;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+}
+
+.categories-items img {
+    max-width: 100px;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.go-button-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.go-to-posts-btn {
+    padding: 0.5rem 1.5rem;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.go-to-posts-btn:hover {
+    background-color: #0056b3;
+}

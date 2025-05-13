@@ -145,8 +145,9 @@ const deletePostById = (req, res) => {
 
 const getPostByCategoryId = (req, res) => {
     const categoryId = req.params.categoryId
+    const categoryIds = categoryId.includes(",") ? categoryId.split(",") : [categoryId]
     postModel.find({
-        category: categoryId
+        category: { $in: categoryIds }
     })
         .populate("category")
         .then((result) => {
