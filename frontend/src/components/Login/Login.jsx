@@ -13,7 +13,7 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const [loginError, setLoginError] = useState(null)
 
-    const { setToken } = useContext(userContext);
+    const { setToken, setUser } = useContext(userContext);
     const navigate = useNavigate();
 
     const handleEmail = (e) =>
@@ -27,7 +27,14 @@ const Login = () => {
         try {
             const res = await axios.post("http://localhost:5000/users/Login", formData)
             console.log("Login successful:", res.data);
-            setToken(res.data.token)
+            const { token, user } = res.data
+            if (!token || !user) {
+                throw new Error("missing token or user")
+            }
+            setToken(token)
+            setUser(user)
+            localStorage.setItem("token", token)
+            localStorage.setItem("User", JSON.stringify(user))
             navigate("/category");
         } catch (err) {
             console.log("Login failed:", err);

@@ -4,20 +4,24 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 24px;
+    padding: 14px 30px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-.logo {
+.logo a {
+    color: white;
+    text-decoration: none;
     font-size: 24px;
     font-weight: bold;
-    color: white;
-    margin: 0;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 24px;
     margin: 0;
     padding: 0;
 }
@@ -25,12 +29,14 @@
 .nav-links li a, .logout-btn {
     color: white;
     text-decoration: none;
-    background: none;
+    font-size: 16px;
     border: none;
-    font-size: 15px;
+    background: none;
     cursor: pointer;
+    transition: color 0.3 ease;
 }
 
-.nav-links li a:hover, .logout-btn:hover{
+.nav-links li a:hover, .logout-btn:hover {
+    color: #00bff0;
     text-decoration: underline;
 }
