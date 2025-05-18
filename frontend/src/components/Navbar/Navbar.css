@@ -41,20 +41,32 @@ body.dark-mode .navbar {
     cursor: pointer;
 }
 
-.brand {
+.brand-button {
     display: flex;
     align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.brand-button:hover .site-name {
+    color: #00ffcc; 
 }
 
 .logo {
     width: 40px;
-    margin-right: 10px;
+    margin-right: 0;
+    transition: transform 0.3s ease;
 }
 
 .site-name {
     font-size: 1.2rem;
     color: white;
     margin: 0;
+    transition: color 0.3s ease;
 }
 
 .navbar-center {
@@ -97,6 +109,21 @@ body.dark-mode .navbar {
 
 .navbar-links li:hover span {
     display: block;
+}
+
+.navbar-links li:hover {
+    color: #00ffcc; 
+    transform: scale(1.05); 
+}
+
+.navbar-right .auth-buttons button:hover {
+    background-color: #333;
+    color: #00ffcc; 
+}
+
+.profile-links button:hover {
+    background-color: #333;
+    color: #00ffcc; 
 }
 
 .navbar-right {
@@ -161,10 +188,12 @@ body.dark-mode .mode-toggle {
     padding: 6px 12px;
     cursor: pointer;
     font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .auth-buttons button:hover {
     background-color: #333;
+    color: #00ffcc; 
 }
 
 .profile-links button {
@@ -174,16 +203,18 @@ body.dark-mode .mode-toggle {
     padding: 6px 12px;
     cursor: pointer;
     font-size: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .profile-links button:hover {
     background-color: #333;
+    color: #00ffcc; 
 }
 
 .profile-links button i {
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
 }
 
 .auth-buttons button i {
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
 }

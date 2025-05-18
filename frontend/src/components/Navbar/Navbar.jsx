@@ -23,14 +23,15 @@ const Navbar = () => {
     useEffect(() => {
         document.body.classList.toggle("dark-mode", isDarkMode);
     }, [isDarkMode]);
-
+    
     return (
         <div className="navbar">
             <div className="navbar-left">
                 <div className="menu">
                     <i className="fas fa-bars"></i>
                 </div>
-                <div className="brand">
+
+                <div className="brand-button" onClick={() => navigate("/")}>
                     <img src="/images/logo.png" alt="logo" className="logo" />
                     <h2 className="site-name">Immortal</h2>
                 </div>
